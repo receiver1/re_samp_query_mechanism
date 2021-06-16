@@ -1,5 +1,8 @@
 #pragma once
 
+/*
+*	For fast read from sstream
+*/
 class c_fast_reader 
 {
 	std::stringstream *_ss;
@@ -42,7 +45,9 @@ struct s_server_info : private c_fast_reader
 
 	s_server_info(std::stringstream &ss)
 	{
-		ss.seekg(11);
+		ss.seekg(11); // set read cursor to 11 byte
+		// why 11 bytes?: https://sampwiki.blast.hk/wiki/Query#Recieving_the_packets
+		
 		set_stream(ss);
 		is_locked = read_num<uint8_t>();
 		players = read_num<uint16_t>();
