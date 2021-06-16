@@ -32,6 +32,9 @@ public:
 		return &instance;
 	}
 
+	/*
+	*	Initialize WinSock2
+	*/
 	void initialize(const char *ip, u_short port)
 	{
 		WSADATA wsa_data;
@@ -59,7 +62,7 @@ public:
 	}
 
 	/*
-	*	Конвертирует IP в байты
+	*	Translate IP to bytes
 	*/
 	std::string translate_ip(std::string ip)
 	{
@@ -72,7 +75,7 @@ public:
 	}
 
 	/*
-	*	Отправляет запрос и ждёт ответа
+	*	Send query and receive response
 	*/
 	std::stringstream query(e_query_type type, int timeout)
 	{
@@ -87,6 +90,9 @@ public:
 		return receive(timeout);
 	}
 
+	/*
+	*	Waiting for response from server
+	*/
 	std::stringstream receive(int timeout)
 	{
 		char buffer[2048];
